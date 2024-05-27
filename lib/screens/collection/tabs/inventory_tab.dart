@@ -128,16 +128,71 @@ class _InventoryTabState extends State<InventoryTab> {
             snap: false,
             shouldCloseOnMinExtent: false,
             builder: (BuildContext context, ScrollController scrollController) {
-              return SingleChildScrollView(
-                controller: scrollController,
-                child: CollectionItemDetailModal(
-                  imageUrl: card['images']['large'],
-                  title: title,
-                  subtitle: subtitle,
-                  ungradedPrice: price,
-                  psa10Price: generatePrice(),
-                  psa9Price: generatePrice(),
-                ),
+              return Stack(
+                children: [
+                  SingleChildScrollView(
+                    controller: scrollController,
+                    child: CollectionItemDetailModal(
+                      imageUrl: card['images']['large'],
+                      title: title,
+                      subtitle: subtitle,
+                      ungradedPrice: price,
+                      psa10Price: generatePrice(),
+                      psa9Price: generatePrice(),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 32,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Colors.white.withOpacity(0),
+                                Colors.white.withOpacity(1),
+                                Colors.white,
+                              ],
+                            ),
+                          ),
+                        ),
+                        Material(
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.black,
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 16.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                onPressed: () {},
+                                child: const Text(
+                                  'Submit for Grading',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               );
             },
           ),

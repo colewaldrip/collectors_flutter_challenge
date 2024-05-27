@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'screens/camera/camera_view.dart';
 import 'screens/collection/collection_view.dart';
 import 'screens/orders/orders_view.dart';
 

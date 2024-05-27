@@ -55,7 +55,7 @@ class CollectionItemDetailModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(0, 20, 0, 40),
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 120),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -287,13 +287,6 @@ class CollectionItemDetailModal extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
           ),
           CollectorsList(),
-          const SizedBox(height: 16),
-          Divider(
-            color: Colors.grey.withOpacity(0.2),
-            thickness: 1,
-            indent: 20,
-            endIndent: 20,
-          ),
         ],
       ),
     );
