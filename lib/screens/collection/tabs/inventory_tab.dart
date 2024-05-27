@@ -173,7 +173,7 @@ class _InventoryTabState extends State<InventoryTab> {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 16.0),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(16.0),
                                   ),
                                 ),
                                 onPressed: () {},
@@ -259,7 +259,7 @@ class _InventoryTabState extends State<InventoryTab> {
                                 fontWeight: FontWeight.w500,
                               ),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(16),
                               ),
                             ),
                             child: const Text('Add to Collection'),
