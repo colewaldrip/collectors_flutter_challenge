@@ -7,31 +7,37 @@ class CollectorsList extends StatelessWidget {
       'imagePath': 'assets/images/avatar_5.png',
       'name': 'Pikachu',
       'grade': 'Raw',
+      'forSale': 'false'
     },
     {
       'imagePath': 'assets/images/avatar_1.png',
       'name': 'Brock',
       'grade': 'PSA 9',
+      'forSale': 'true'
     },
     {
       'imagePath': 'assets/images/avatar_2.png',
       'name': 'Ditto',
       'grade': 'Raw',
+      'forSale': 'false'
     },
     {
       'imagePath': 'assets/images/avatar_3.png',
       'name': 'Ash',
       'grade': 'PSA 4',
+      'forSale': 'true'
     },
     {
       'imagePath': 'assets/images/avatar_4.png',
       'name': 'Bulba',
       'grade': 'Raw',
+      'forSale': 'false'
     },
     {
       'imagePath': 'assets/images/avatar_6.png',
       'name': 'Yikes',
       'grade': 'PSA 10',
+      'forSale': 'true'
     },
   ];
 
@@ -55,6 +61,7 @@ class CollectorsList extends StatelessWidget {
                 imagePath: collector['imagePath']!,
                 name: collector['name']!,
                 grade: collector['grade']!,
+                forSale: collector['forSale']! == 'true',
               );
             },
           ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_plus/share_plus.dart';
+import 'dart:math';
+import 'package:intl/intl.dart';
 
+import 'package:test_drive/components/collection_list_item.dart';
 import 'package:test_drive/components/collectors_list.dart';
 import 'package:test_drive/components/sales_history_item.dart';
 import 'package:test_drive/components/sales_line_chart.dart';
@@ -14,6 +17,7 @@ class CollectionItemDetailModal extends StatelessWidget {
   final String ungradedPrice;
   final String psa10Price;
   final String psa9Price;
+  final List<dynamic> similarItems;
 
   CollectionItemDetailModal({
     super.key,
@@ -23,6 +27,7 @@ class CollectionItemDetailModal extends StatelessWidget {
     required this.ungradedPrice,
     required this.psa10Price,
     required this.psa9Price,
+    required this.similarItems,
   });
 
   final List<Map<String, String>> salesHistory = [
@@ -51,6 +56,28 @@ class CollectionItemDetailModal extends StatelessWidget {
       'price': '\$44.00',
     },
   ];
+
+  String generatePrice() {
+    final random = Random();
+    final price = (random.nextDouble() * 10000)
+        .toStringAsFixed(2); // Generate prices in the thousands
+    final numberFormat = NumberFormat("#,##0.00", "en_US");
+    return '\$${numberFormat.format(double.parse(price))}';
+  }
+
+  String generatePriceChange() {
+    final random = Random();
+    final change =
+        (random.nextDouble() * 20 - 10); // Random value between -10 and 10
+    return change.toStringAsFixed(2);
+  }
+
+  String formatTitle(dynamic card) {
+    final releaseDate = card['set']['releaseDate'];
+    final year =
+        releaseDate != null ? releaseDate.split('/')[0] : 'Unknown Year';
+    return '$year ${card['set']['name']} ${card['name']} - ${card['rarity']} #${card['number']}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -266,11 +293,11 @@ class CollectionItemDetailModal extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
           ),
           const Padding(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
             child: SalesLineChart(),
           ),
           const SizedBox(height: 16),
-          TimelineButtonsRow(),
+          const TimelineButtonsRow(),
           const SizedBox(height: 32),
           Divider(
             color: Colors.grey.withOpacity(0.2),
@@ -283,10 +310,48 @@ class CollectionItemDetailModal extends StatelessWidget {
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             margin: const EdgeInsets.only(bottom: 10),
-            child: const Text('Collectors',
+            child: const Text('Collectors with this item',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
           ),
           CollectorsList(),
+          const SizedBox(height: 32),
+          Divider(
+            color: Colors.grey.withOpacity(0.2),
+            thickness: 1,
+            indent: 20,
+            endIndent: 20,
+          ),
+          const SizedBox(height: 32),
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.only(bottom: 10),
+            child: const Text('Similar Items',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: similarItems.length,
+            padding: const EdgeInsets.all(0),
+            itemBuilder: (BuildContext context, int index) {
+              final card = similarItems[index];
+              final price = generatePrice();
+              final priceChange = generatePriceChange();
+              final title = formatTitle(card);
+
+              return InkWell(
+                onTap: () => {},
+                child: CollectionListItem(
+                  imageUrl: card['images']['large'],
+                  title: title,
+                  grade: 'UNGRADED',
+                  price: price,
+                  priceChange: priceChange,
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

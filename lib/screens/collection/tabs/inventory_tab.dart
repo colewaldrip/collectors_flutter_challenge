@@ -103,7 +103,8 @@ class _InventoryTabState extends State<InventoryTab> {
     return '$year ${card['set']['name']} ${card['name']} - ${card['rarity']} #${card['number']}';
   }
 
-  void _showCollectionItemDetailModal(BuildContext context, dynamic card) {
+  void _showCollectionItemDetailModal(
+      BuildContext context, dynamic card, List<dynamic> similarItems) {
     final releaseDate = card['set']['releaseDate'];
     final year =
         releaseDate != null ? releaseDate.split('/')[0] : 'Unknown Year';
@@ -139,6 +140,7 @@ class _InventoryTabState extends State<InventoryTab> {
                       ungradedPrice: price,
                       psa10Price: generatePrice(),
                       psa9Price: generatePrice(),
+                      similarItems: similarItems,
                     ),
                   ),
                   Positioned(
@@ -270,10 +272,11 @@ class _InventoryTabState extends State<InventoryTab> {
                         final price = generatePrice();
                         final priceChange = generatePriceChange();
                         final title = formatTitle(card);
+                        final similarItems = items.take(5).toList();
 
                         return InkWell(
-                          onTap: () =>
-                              _showCollectionItemDetailModal(context, card),
+                          onTap: () => _showCollectionItemDetailModal(
+                              context, card, similarItems),
                           child: CollectionListItem(
                             imageUrl: card['images']['large'],
                             title: title,
