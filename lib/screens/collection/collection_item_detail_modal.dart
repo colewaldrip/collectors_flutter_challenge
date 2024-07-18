@@ -59,16 +59,14 @@ class CollectionItemDetailModal extends StatelessWidget {
 
   String generatePrice() {
     final random = Random();
-    final price = (random.nextDouble() * 10000)
-        .toStringAsFixed(2); // Generate prices in the thousands
+    final price = (random.nextDouble() * 10000).toStringAsFixed(2);
     final numberFormat = NumberFormat("#,##0.00", "en_US");
     return '\$${numberFormat.format(double.parse(price))}';
   }
 
   String generatePriceChange() {
     final random = Random();
-    final change =
-        (random.nextDouble() * 20 - 10); // Random value between -10 and 10
+    final change = (random.nextDouble() * 20 - 10);
     return change.toStringAsFixed(2);
   }
 

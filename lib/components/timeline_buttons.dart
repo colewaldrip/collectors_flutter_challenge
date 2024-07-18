@@ -28,8 +28,7 @@ class TimelineButton extends StatelessWidget {
               text,
               style: const TextStyle(
                 color: Colors.black,
-                fontWeight:
-                    FontWeight.w800, // Set font weight to 800 for all buttons
+                fontWeight: FontWeight.w800,
               ),
             ),
           ),

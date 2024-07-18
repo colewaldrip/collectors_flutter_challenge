@@ -76,16 +76,6 @@ class CollectorItem extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           color: Colors.black.withOpacity(0.6)),
                     ),
-                    // if (forSale) ...[
-                    //   const Text(
-                    //     'FOR SALE',
-                    //     style: TextStyle(
-                    //       fontSize: 10,
-                    //       fontWeight: FontWeight.w900,
-                    //       color: Colors.green,
-                    //     ),
-                    //   )
-                    // ],
                   ],
                 ))));
   }

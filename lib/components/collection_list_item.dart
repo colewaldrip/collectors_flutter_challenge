@@ -28,8 +28,7 @@ class CollectionListItem extends StatelessWidget {
       child: Row(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(
-                4.0), // Adjust the border radius as needed
+            borderRadius: BorderRadius.circular(4.0),
             child: Image.network(
               imageUrl,
               width: 80,

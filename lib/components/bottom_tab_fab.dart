@@ -25,8 +25,8 @@ class BottomTabFab extends StatelessWidget {
             // ignore: deprecated_member_use
             color: Colors.white),
         onPressed: () => onPressed(),
-        splashColor: Colors.white, // Color of the splash (ripple effect)
-        highlightColor: Colors.grey[800], // Color of the background on press
+        splashColor: Colors.white,
+        highlightColor: Colors.grey[800],
       ),
     );
   }
